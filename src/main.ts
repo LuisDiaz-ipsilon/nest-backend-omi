@@ -13,12 +13,7 @@ async function bootstrap() {
     })
   );
 
-  app.enableCors({
-    origin: ['http://localhost:4200', 'http://134.255.176.206', 'https://omi-murex.vercel.app'],  // Especifica el origen permitido
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-    credentials: true
-  });
+  app.enableCors();
 
 
   await app.listen(3000);
