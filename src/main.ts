@@ -14,11 +14,9 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: [
-      'http://localhost:4200', 'http://134.255.176.206', 'https://omi-murex.vercel.app'
-    ],
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    credentials: true,
+    origin: '*',
+    methods: 'GET, PUT, POST, DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
   });
 
   await app.listen(3000);
