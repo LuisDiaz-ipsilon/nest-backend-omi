@@ -14,7 +14,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: ['https://frontend.com', 'https://another-frontend.com'], // Allowed origins
+    origin: ['http://localhost:4200', 'http://134.255.176.206', 'https://omi-murex.vercel.app'], // Allowed origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
     credentials: true, // Allow credentials (e.g., cookies)
     allowedHeaders: 'Content-Type, Accept', // Allowed headers
