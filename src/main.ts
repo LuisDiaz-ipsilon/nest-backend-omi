@@ -14,7 +14,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: '*',
+    origin: ['http://localhost:4200', 'http://134.255.176.206', 'https://omi-murex.vercel.app'],
     methods: 'GET, PUT, POST, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
   });
