@@ -8,4 +8,5 @@ export interface LoginResponse {
   token?: String;
   userName?: String;
   ok: boolean;
+  schoolLevel?: string;
 }
