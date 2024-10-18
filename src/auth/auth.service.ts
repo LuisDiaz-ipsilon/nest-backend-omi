@@ -46,27 +46,12 @@ export class AuthService {
       
     } catch (error) {
       if( error.code === 11000 ) {
-        throw new BadRequestException(`${ createUserDto.firstName } already exists!`)
+        throw new BadRequestException(`${ createUserDto.firstName } ya existe!`)
       }
-      throw new InternalServerErrorException('Something terribe happen!!!');
+      throw new InternalServerErrorException('Notifique el error al administrador del sitio');
     }
 
   }
-
-  /*async register( registerDto: RegisterUserDto ): Promise<LoginResponse> {
-
-    const user = await this.create( registerDto );
-
-    return {
-      status: 'Ok',
-      message: 'Usuario creado',
-      id: user.id,
-      userName: user.firstName,
-      ok: true,
-      token: this.getJwtToken({ _id: user._id }),
-    };
-  }*/
-
 
   async login( loginDto: LoginDto ):Promise<LoginResponse> {
 
@@ -89,7 +74,7 @@ export class AuthService {
       message: 'Usuario logeado',
       userName: user.firstName,
       ok: true,
-      token: this.getJwtToken({ _id: user._id }),
+      token: this.getJwtToken({ email: user.email }),
     };
   
   }

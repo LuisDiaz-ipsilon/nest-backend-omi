@@ -50,7 +50,7 @@ export class AuthController {
       message: 'Token renovado',
       userName: user.firstName,
       ok: true,
-      token: this.authService.getJwtToken({ _id: user._id }),
+      token: this.authService.getJwtToken({ email: user.email }),
     };
 
   }
