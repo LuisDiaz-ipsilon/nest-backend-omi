@@ -18,7 +18,6 @@ export class AuthController {
 
   @Post()
   login( @Body() loginDto: LoginDto  ) {
-    console.log(loginDto);
     return this.authService.login( loginDto );
   }
 
@@ -31,9 +30,6 @@ export class AuthController {
   @UseGuards( AuthGuard )
   @Get()
   findAll( @Request() req: Request ) {
-    // const user = req['user'];
-    
-    // return user;
     return this.authService.findAll();
   }
 

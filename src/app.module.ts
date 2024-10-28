@@ -4,15 +4,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 
 import { AuthModule } from './auth/auth.module';
+import { ArchivosModule } from './archivos/archivos.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-
     MongooseModule.forRoot( process.env.MONGO_URI ),
-
     AuthModule,
-
+    ArchivosModule,
   ],
   controllers: [],
   providers: [],

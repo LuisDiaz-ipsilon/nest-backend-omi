@@ -105,8 +105,17 @@ export class AuthService {
   }
 
   getJwtToken( payload: JwtPayload ) {
+    console.log('paYLOAD:'+payload);
     const token = this.jwtService.sign(payload);
     return token;
+  }
+
+  async findUserByEmail(email: string): Promise<User> {
+    const user = await this.userModel.findOne({ email }).exec();
+    if (user) {
+      user.id = user._id; // Asegúrate de que el campo 'id' se mapea correctamente
+    }
+    return user;
   }
 
 }

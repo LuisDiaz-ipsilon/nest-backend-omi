@@ -5,6 +5,10 @@
 mongo/
 .env
 
+# Archivos que los usuarios subiran a su proyecto
+/uploads/
+
+
 
 # Logs
 logs
