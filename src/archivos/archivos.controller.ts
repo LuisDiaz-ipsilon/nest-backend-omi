@@ -50,9 +50,7 @@ import { AuthService } from 'src/auth/auth.service';
       @UploadedFile() file: MulterFile,
       @Request() req: any,
     ) {
-      console.log(req);
       const user = req.user as User;
-      console.log('aqui', user.email);
       const archivo = await this.archivosService.create(file, user.email);
       return {
         status: 'Ok',
@@ -86,7 +84,6 @@ import { AuthService } from 'src/auth/auth.service';
     
         // Verificar que el usuario es el dueño del archivo
         const user = req.user as User;
-        console.log(archivo.owner.toString(), 'Verificaion', user.email,);
         if (archivo.owner.toString() !== user.email) {
           return res
             .status(HttpStatus.FORBIDDEN)
