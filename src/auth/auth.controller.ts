@@ -51,10 +51,11 @@ export class AuthController {
 
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.authService.findOne(+id);
-  // }
+  @Get(':email')
+  @UseGuards( AuthGuard )
+  findOne(@Param('email') email: string) {
+    return this.authService.findUserByEmail(email);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {

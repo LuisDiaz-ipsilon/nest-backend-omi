@@ -11,6 +11,7 @@ import {
     Res,
     HttpStatus,
     NotFoundException,
+    ForbiddenException
   } from '@nestjs/common';
   import { FileInterceptor } from '@nestjs/platform-express';
   import { diskStorage } from 'multer';
@@ -22,11 +23,14 @@ import {
   import { Response } from 'express';
   // Importa directamente el tipo 'File' desde 'multer'
 import { File as MulterFile } from 'multer';
+import { AuthService } from 'src/auth/auth.service';
 
   
   @Controller('api/archivos')
   export class ArchivosController {
-    constructor(private readonly archivosService: ArchivosService) {}
+    constructor(private readonly archivosService: ArchivosService,
+                private readonly authService: AuthService
+    ) {}
   
     @UseGuards(AuthGuard)
     @Post('upload')
@@ -97,6 +101,35 @@ import { File as MulterFile } from 'multer';
           message: error.message || 'Error interno del servidor',
         });
       }
+    }
+
+    @UseGuards(AuthGuard)
+    @Get('files-by-admin')
+    async getAllFilesByAdmin(@Request() req: any) {
+      const user = req.user as User;
+  
+      // Verificar si el usuario tiene el rol de admin
+      if (user.roles.includes('admin')) {
+        const archivos = await this.archivosService.findAllFiles();
+        return archivos;
+      } else {
+        // Si no tiene el rol, lanza una excepción con mensaje personalizado
+        throw new ForbiddenException('Acceso denegado: solo administradores pueden ver todos los archivos.');
+      }
+    }
+
+    //Buscar los datos de un usuarios para mostrarlos sobre la carpeta del mismo, esto desde una vista de administrador
+    @UseGuards(AuthGuard)
+    @Get(':email')
+    findOne(@Param('email') email: string, @Request() req: Request) {
+      const user = req['user'] as User;
+
+      // Verificar si el usuario tiene el rol de admin
+      if (!user.roles.includes('admin')) {
+        throw new ForbiddenException('Acceso denegado: solo administradores pueden buscar usuarios.');
+      }
+
+      return this.authService.findUserByEmail(email);
     }
   }
   

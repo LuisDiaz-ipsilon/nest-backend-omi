@@ -32,6 +32,10 @@ export class ArchivosService {
     return this.archivoModel.find({ owner: ownerId }).exec();
   }
 
+  async findAllFiles(): Promise<Archivo[]> {
+    return this.archivoModel.find().exec();
+  }
+
   async findOne(id: string): Promise<Archivo> {
     return this.archivoModel.findById(id).exec();
   }
