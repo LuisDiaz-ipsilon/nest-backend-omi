@@ -75,7 +75,8 @@ export class AuthService {
       userName: user.firstName,
       ok: true,
       token: this.getJwtToken({ email: user.email }),
-      schoolLevel: user.schoolLevel
+      schoolLevel: user.schoolLevel,
+      roles: user.roles
     };
   
   }

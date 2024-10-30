@@ -9,4 +9,5 @@ export interface LoginResponse {
   userName?: String;
   ok: boolean;
   schoolLevel?: string;
+  roles: string[];
 }
