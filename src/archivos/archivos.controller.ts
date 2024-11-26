@@ -22,7 +22,6 @@ import {
   import { join } from 'path';
   import { Response } from 'express';
   // Importa directamente el tipo 'File' desde 'multer'
-import { File as MulterFile } from 'multer';
 import { AuthService } from 'src/auth/auth.service';
 
   
@@ -47,7 +46,7 @@ import { AuthService } from 'src/auth/auth.service';
       }),
     )
     async uploadFile(
-      @UploadedFile() file: MulterFile,
+      @UploadedFile() file: Express.Multer.File,
       @Request() req: any,
     ) {
       const user = req.user as User;
