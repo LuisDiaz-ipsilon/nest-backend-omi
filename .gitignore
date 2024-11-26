@@ -7,6 +7,7 @@ mongo/
 
 # Archivos que los usuarios subiran a su proyecto
 /uploads/
+/uploads_galeria/
 
 
 
